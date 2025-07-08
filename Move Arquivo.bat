@@ -18,11 +18,17 @@ for %%f in (%origem%\*.csv) do (
     :: Usa findstr para procurar palavras-chave no nome do arquivo
     echo !nome_arquivo! | findstr /i "Ext_Plusoft_Produto" >nul
     if !errorlevel! == 0 set "tipo=produtos"
+  
+    echo !nome_arquivo! | findstr /i "Ext_CRM_Produto_Full" >nul
+    if !errorlevel! == 0 set "tipo=produtos"
     
     echo !nome_arquivo! | findstr /i "Ext_Plusoft_Pessoa" >nul
     if !errorlevel! == 0 set "tipo=pessoas"
+
+    echo !nome_arquivo! | findstr /i "Ext_CRM_Pessoa_Full" >nul
+    if !errorlevel! == 0 set "tipo=pessoas"
     
-    echo !nome_arquivo! | findstr /i "Ext_Plusoft_Vendas" >nul
+    echo !nome_arquivo! | findstr /i "Ext_CRM_Vendas" >nul
     if !errorlevel! == 0 set "tipo=vendas"
     
     echo !nome_arquivo! | findstr /i "Ext_Plusoft_Ofertas" >nul
@@ -30,6 +36,9 @@ for %%f in (%origem%\*.csv) do (
     
     echo !nome_arquivo! | findstr /i "Ext_Plusoft_Filial" >nul
     if !errorlevel! == 0 set "tipo=filial"
+
+    echo !nome_arquivo! | findstr /i "Ext_CRM_ProdEmpresa" >nul
+    if !errorlevel! == 0 set "tipo=produtos_por_loja"
 
     :: Verifica se o tipo foi encontrado
     if defined tipo (
